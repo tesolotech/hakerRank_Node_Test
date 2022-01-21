@@ -8,5 +8,10 @@ router.get('/', trades.getTradeList);
 
 router.get('/:id', trades.getTradeById);
 
+router.put('/:id', trades.updateTrade);
+
+router.patch('/:id', trades.updateTradeSFeild);
+
+router.delete('/:id', trades.deleteTrade);
 
 module.exports = router;

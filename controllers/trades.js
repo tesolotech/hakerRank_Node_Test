@@ -71,4 +71,16 @@ exports.getTradeById = (req, res) => {
         })
 };
 
+exports.updateTrade = (req, res) => {
+    res.status(405).json({ error: 'API does not allow delete and update trade details righ now!' })
+}
+
+exports.updateTradeSFeild = (req, res) => {
+    res.status(405).json({ error: 'API does not allow delete and update trade details righ now!' })
+}
+
+exports.deleteTrade = (req, res) => {
+    res.status(405).json({ error: 'API does not allow delete and update trade details righ now!' })
+}
+
 
