@@ -21,7 +21,6 @@ exports.createTrade = (req, res, next) => {
         }
         res.status(201).send(response);
     }).catch((err) => {
-
         let response = {
             status: 400,
             message: "ERROR",
@@ -30,7 +29,27 @@ exports.createTrade = (req, res, next) => {
         return res.status(400).send(response);
     })
 
-
 };
+
+
+exports.getTradeList = (req, res) => {
+    Trades.getTradeList()
+        .then((result) => {
+            let response = {
+                status: 200,
+                message: "SUCEESS",
+                data: result
+            }
+            res.status(200).json(response);
+        }).catch((err) => {
+            let response = {
+                status: 400,
+                message: "ERROR",
+                data: []
+            }
+            res.status(400).json(response);
+        })
+}
+
 
 

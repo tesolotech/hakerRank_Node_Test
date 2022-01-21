@@ -21,8 +21,20 @@ const Trade = mongoose.model('Trade', TradeSchema);
 exports.Trade = Trade;
 // module.exports = mongoose.model('Trade', TradeSchema);
 
-exports.createTrade = (userData) => {
-    console.log(userData);
-    const trade = new Trade(userData);
+exports.createTrade = (tradeData) => {
+    const trade = new Trade(tradeData);
     return trade.save();
+};
+
+exports.getTradeList = () => {
+    return new Promise((resolve, reject) => {
+        Trade.find()
+            .exec(function (err, trade) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(trade);
+                }
+            })
+    });
 };
