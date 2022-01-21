@@ -51,5 +51,24 @@ exports.getTradeList = (req, res) => {
         })
 }
 
+exports.getTradeById = (req, res) => {
+    Trades.findById(req.params.id)
+        .then((result) => {
+            let response = {
+                status: 200,
+                message: "SUCCESS",
+                data: result
+            }
+            res.status(200).json(response);
+
+        }).catch((err) => {
+            let response = {
+                status: 400,
+                message: "ERROR",
+                data: {}
+            }
+            res.status(400).json(response);
+        })
+};
 
 

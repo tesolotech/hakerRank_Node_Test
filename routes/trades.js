@@ -6,7 +6,7 @@ router.post('/', trades.createTrade);
 
 router.get('/', trades.getTradeList);
 
-
+router.get('/:id', trades.getTradeById);
 
 
 module.exports = router;

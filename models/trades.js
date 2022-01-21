@@ -17,11 +17,39 @@ const TradeSchema = mongoose.Schema({
     timestamps: true
 });
 
-const Trade = mongoose.model('Trade', TradeSchema);
+TradeSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+TradeSchema.set('toJSON', {
+    virtuals: true,
+    transform: (doc, ret, options) => {
+        delete ret.__v;
+        ret.id = ret._id.toString();
+        delete ret._id;
+    },
+});
+
+mongoose.set('useFindAndModify', false);
+
+
+const Trade = mongoose.model('Trades', TradeSchema);
 exports.Trade = Trade;
 // module.exports = mongoose.model('Trade', TradeSchema);
 
+exports.findById = (id) => {
+    return new Promise((resolve, reject) => {
+        Trade.findOne({ _id: id }).exec((err, result) => {
+            if (err) return reject(err);
+            return resolve(result);
+
+        })
+    })
+};
+
 exports.createTrade = (tradeData) => {
+    console.log(tradeData);
     const trade = new Trade(tradeData);
     return trade.save();
 };
