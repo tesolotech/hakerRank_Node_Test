@@ -6,7 +6,7 @@
 const mongoose = require('mongoose');
 
 const TradeSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     type: { type: String, required: true },
     user_id: { type: Number, required: true },
     symbol: { type: String, required: true },
@@ -49,7 +49,6 @@ exports.findById = (id) => {
 };
 
 exports.createTrade = (tradeData) => {
-    console.log(tradeData);
     const trade = new Trade(tradeData);
     return trade.save();
 };

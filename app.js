@@ -20,6 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/trades', tradesRouter);
 app.use('/', indexRouter);
-app.set('port', process.env.PORT || 3000);
-app.listen(app.get('port'), () => console.log(`Server is listening on port ${app.get('port')}`));
+// app.set('port', process.env.PORT || 3000);
+// app.listen(app.get('port'), () => console.log(`Server is listening on port ${app.get('port')}`));
 module.exports = app;
